@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="Level" type="Node2D"]
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="StaticWall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticWall"]
+polygon = PoolVector2Array( 128, -64, 448, -64, 448, 384, -64, 384, -64, 320, 384, 320, 384, 0, 128, 0 )
+
+[node name="StaticWall2" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticWall2"]
+polygon = PoolVector2Array( 0, 0, 0, -64, -320, -64, -320, 384, -192, 384, -192, 320, -256, 320, -256, 0 )
