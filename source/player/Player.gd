@@ -3,12 +3,18 @@ extends KinematicBody2D
 
 # Declare member variables here. Examples:
 var _velocity: Vector2
-var speed := 250.0
+export var speed := 250.0
 var speed_damping := 0.6
+
+var _directions := {Vector2.LEFT: "RIGHT", Vector2.RIGHT: "RIGHT", Vector2.DOWN: "DOWN", Vector2.UP: "UP"}
+
+onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	animated_sprite.play("idle")
+	animated_sprite.stop()
+	animated_sprite.frame = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -24,6 +30,26 @@ func _physics_process(delta: float) -> void:
 		input.y += 1
 	
 	input = input.normalized()
+	_update_animation(input)
 	
 	_velocity = _velocity.linear_interpolate(input * speed, speed_damping)
 	_velocity = move_and_slide(_velocity, Vector2.UP)
+
+func _update_animation(direction: Vector2) -> void:
+	var walking = (direction != Vector2.ZERO)
+	
+	if direction.x != 0 and direction.y != 0:
+		direction.x = 0
+		direction.y = -1 if direction.y < 0 else 1
+	
+	if walking:
+		var _animation: String = _directions[direction]
+		animated_sprite.flip_h = false
+		if direction == Vector2.LEFT:
+			animated_sprite.flip_h = true
+
+		_animation = "walk_" + _animation
+		animated_sprite.play(_animation.to_lower())
+	else:
+		animated_sprite.play("idle")
+		animated_sprite.stop()
