@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 
 # Declare member variables here. Examples:
@@ -16,11 +16,6 @@ func _ready():
 #	pass
 
 
-func _on_Door_body_entered(body):
-	print("Porta: Entrou na area da porta")
-	open_or_close() 
-
-
 func open_or_close():
 	var sprite = get_node("Sprite")
 	if is_open:
@@ -28,3 +23,7 @@ func open_or_close():
 	else:
 		sprite.region_rect.position.x = 6 * 68
 	is_open = not is_open
+
+
+func _on_Area2D_body_entered(body):
+	open_or_close()
