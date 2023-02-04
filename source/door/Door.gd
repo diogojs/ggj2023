@@ -30,3 +30,14 @@ func _on_Area2D_body_entered(body):
 
 func _on_Area2D_body_exited(body):
 	switch_door_status()
+
+func get_rect():
+	var area2D = get_node("Area2D")
+	var shape = area2D.get_node("CollisionShape2D").shape
+	var size = Vector2(shape.height, shape.radius)
+	if get_rotation() == 0:
+		var begin = position + area2D.position - (size / 2)
+		return Rect2(begin, size)
+	else:
+		var begin = position - area2D.position - (size / 2)
+		return Rect2(begin, size)
