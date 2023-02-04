@@ -1,8 +1,9 @@
 extends StaticBody2D
 
+signal on_Door_open(dir_name)
 
 # Declare member variables here. Examples:
-var dir_name = ""
+export var dir_name = ""
 var is_open = false
 
 
@@ -15,8 +16,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
-func open_or_close():
+func switch_door_status():
 	var sprite = get_node("Sprite")
 	if is_open:
 		sprite.region_rect.position.x = 0
@@ -24,6 +24,9 @@ func open_or_close():
 		sprite.region_rect.position.x = 6 * 68
 	is_open = not is_open
 
-
 func _on_Area2D_body_entered(body):
-	open_or_close()
+	switch_door_status()
+	emit_signal("on_Door_open", dir_name)
+
+func _on_Area2D_body_exited(body):
+	switch_door_status()
