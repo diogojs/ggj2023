@@ -1,35 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://door/Door.tscn" type="PackedScene" id=3]
 [ext_resource path="res://rooms/Room.gd" type="Script" id=4]
 
-[node name="Main" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 128, 128 )
-
-[node name="Room1" type="Node2D" parent="."]
-position = Vector2( 320, 64 )
+[node name="Room" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="Walls" type="Node2D" parent="Room1"]
+[node name="Walls" type="Node2D" parent="."]
+position = Vector2( 320, 64 )
 
-[node name="StaticWall" type="StaticBody2D" parent="Room1/Walls"]
+[node name="StaticWall" type="StaticBody2D" parent="Walls"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room1/Walls/StaticWall"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticWall"]
 polygon = PoolVector2Array( 128, -64, 448, -64, 448, 384, -64, 384, -64, 320, 384, 320, 384, 0, 128, 0 )
 
-[node name="StaticWall2" type="StaticBody2D" parent="Room1/Walls"]
+[node name="StaticWall2" type="StaticBody2D" parent="Walls"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Room1/Walls/StaticWall2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/StaticWall2"]
 polygon = PoolVector2Array( 0, 0, 0, -64, -320, -64, -320, 384, -192, 384, -192, 320, -256, 320, -256, 0 )
 
-[node name="Door" parent="Room1" instance=ExtResource( 3 )]
-position = Vector2( 64, -47 )
+[node name="Door" parent="." instance=ExtResource( 3 )]
+position = Vector2( 384, 17 )
 dir_name = "help"
 
-[node name="Door2" parent="Room1" instance=ExtResource( 3 )]
-position = Vector2( -127, 367 )
+[node name="Door2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 193, 431 )
 rotation = 3.14159
 dir_name = ".."
