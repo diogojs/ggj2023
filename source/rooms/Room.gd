@@ -18,15 +18,15 @@ func _on_Door_open(new_dir_name):
 
 
 func get_position_at_front(door_name, size):
+	var offset = Vector2(0, 25)
 	for child in get_children():
 		if child.name.substr(0, 4) == "Door":
 			if child.dir_name == door_name:
-				var rect = child.get_rect()
+				var door_rect = child.get_rect()
+				var center = door_rect.get_center()
+				var start = door_rect.position
+				var end = door_rect.end
 				if child.rotation == 0:
-					return rect.position \
-						+ Vector2(rect.size.x / 2, rect.size.y + 10) \
-						+ Vector2(0, size.y / 2)
+					return Vector2(center.x, end.y) + Vector2(0, size.y / 2) + offset
 				else:
-					return rect.position \
-						+ Vector2(rect.size.x / 2, -10) \
-						- Vector2(0, size.y / 2)
+					return Vector2(center.x, start.y) - Vector2(0, size.y / 2) - offset

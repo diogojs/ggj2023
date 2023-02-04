@@ -7,11 +7,6 @@ export var dir_name = ""
 var is_open = false
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -32,12 +27,7 @@ func _on_Area2D_body_exited(body):
 	switch_door_status()
 
 func get_rect():
-	var area2D = get_node("Area2D")
-	var shape = area2D.get_node("CollisionShape2D").shape
-	var size = Vector2(shape.height, shape.radius)
-	if get_rotation() == 0:
-		var begin = position + area2D.position - (size / 2)
-		return Rect2(begin, size)
-	else:
-		var begin = position - area2D.position - (size / 2)
-		return Rect2(begin, size)
+	var coll2D = get_node("Area2D/CollisionShape2D")
+	var diameter = coll2D.shape.radius * 2
+	var size = Vector2(diameter, coll2D.shape.height + diameter)
+	return Rect2(coll2D.global_position - (size / 2), size)

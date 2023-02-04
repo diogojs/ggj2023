@@ -1,21 +1,13 @@
 extends Node2D
 
 export var current_dir = "/"
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var scene_changing = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var current_room = get_node("CurrentRoom")
 	current_room.connect("on_Door_open", self, "_on_Door_open")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+	
 func change_directory(new_dir_name):	
 	if new_dir_name != "..":
 		current_dir += "/" + new_dir_name
@@ -28,13 +20,17 @@ func change_directory(new_dir_name):
 		
 		
 func change_player_position(room, door_name):
-	var player = $Player
-	var shape = player.get_node("KinematicBody2D/CollisionShape2D").shape
+	var player = get_node("Player/KinematicBody2D")
+	var shape = player.get_node("CollisionShape2D").shape
 	var new_position = room.get_position_at_front(door_name, shape.extents)
-	player.position = new_position
+	player.global_position = new_position
 
 func _on_Door_open(new_dir_name):
-	var old_room = $CurrentRoom
+	if scene_changing:
+		return
+	scene_changing = true
+	
+	var old_room = get_node("CurrentRoom")
 	old_room.disconnect("on_Door_open", self, "_on_Door_open")
 	remove_child(old_room)
 	old_room.queue_free()
@@ -49,3 +45,8 @@ func _on_Door_open(new_dir_name):
 	new_room.connect("on_Door_open", self, "_on_Door_open")
 	
 	change_player_position(new_room, old_dir)
+	$Timer.start()
+
+
+func _on_Timer_timeout():
+	scene_changing = false # Replace with function body.
