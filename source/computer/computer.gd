@@ -1,6 +1,6 @@
 extends Node2D
 
-export var current_dir = "/root"
+export var current_dir = "/"
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
