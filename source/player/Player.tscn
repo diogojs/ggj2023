@@ -72,6 +72,11 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+permissions = {
+"execute": 0,
+"read": 3,
+"write": 0
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 position = Vector2( 0, 4 )

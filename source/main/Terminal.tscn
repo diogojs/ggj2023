@@ -41,7 +41,7 @@ bbcode_text = "
 
 
 
-[green]user@archie:~$ [/green]"
+[color=green]user@archie:~$ [/color]"
 text = "
 
 
@@ -56,7 +56,7 @@ text = "
 
 
 
-[green]user@archie:~$ [/green]"
+user@archie:~$ "
 scroll_active = false
 scroll_following = true
 

@@ -6,6 +6,12 @@ var _velocity: Vector2
 export var speed := 250.0
 var speed_damping := 0.6
 
+export var permissions = {
+	"read": 0,
+	"write": 0,
+	"execute": 0
+}
+
 var _directions := {Vector2.LEFT: "RIGHT", Vector2.RIGHT: "RIGHT", Vector2.DOWN: "DOWN", Vector2.UP: "UP"}
 
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
@@ -53,3 +59,7 @@ func _update_animation(direction: Vector2) -> void:
 	else:
 		animated_sprite.play("idle")
 		animated_sprite.stop()
+
+func get_level(permission_flag: String):
+	return permissions[permission_flag]
+	

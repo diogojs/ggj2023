@@ -20,9 +20,9 @@ func _on_text_entered(new_text):
 		return
 
 	if _validate(new_text):
-		history.text += prompt + new_text
+		history.bbcode_text += prompt + new_text
 	else:
-		history.text += "\n" + new_text + ": invalid command"
+		history.bbcode_text += "\n[color=red]" + new_text + "[/color] : invalid command"
 
 func _validate(command: String) -> bool:
 	return command == "cat"
