@@ -1,5 +1,7 @@
 extends Control
 
+signal on_copy_File
+signal on_paste_File
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -31,18 +33,14 @@ func add_text(text: String):
 
 func _validate(command: String) -> bool:
 	var exec = command.substr(0, command.find(" "))
-	return exec in ["cat"]
+	return exec in ["cat", "copy", "paste"]
 
 func run_command(command: String) -> String:
 	var exec_end = command.find(" ")
 	var exec = command.substr(0, exec_end)
 	var args = [] if (exec_end == -1) else command.substr(exec_end + 1).split(" ")
+	return call(exec, args)
 
-	if exec == "cat":
-		return cat(args)
-	else:
-		return "Gurizada esqueceu de cobrir esse comando"
-		
 func cat(args: Array) -> String:
 	if args.empty():
 		return "\n[color=red]Usage:[/color] cat <file>"
@@ -50,3 +48,12 @@ func cat(args: Array) -> String:
 
 func _on_access_denied(message: String):
 	add_text(message)
+
+func copy(args):
+	emit_signal("on_copy_File")
+	return ""
+	
+func paste(args):
+	emit_signal("on_paste_File")
+	return ""
+

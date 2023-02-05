@@ -63,3 +63,7 @@ func _update_animation(direction: Vector2) -> void:
 func get_level(permission_flag: String):
 	return permissions[permission_flag]
 	
+func get_rect() -> Rect2:
+	var coll2D = get_node("CollisionShape2D")
+	var size = coll2D.shape.extents
+	return Rect2(coll2D.global_position - size / 2, size)
