@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://rooms/Room.gd" type="Script" id=1]
 [ext_resource path="res://tilemap/scenary.tres" type="TileSet" id=2]
 [ext_resource path="res://door/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://interactive/Readable.tscn" type="PackedScene" id=4]
+[ext_resource path="res://interactive/LevelUp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://interactive/PermissionHandler.tscn" type="PackedScene" id=6]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -18,3 +21,21 @@ tile_data = PoolIntArray( -65522, 0, 65539, -65521, 0, 65539, -65520, 0, 65539, 
 [node name="Door" parent="." instance=ExtResource( 3 )]
 position = Vector2( 480, 32 )
 dir_name = ".."
+
+[node name="LevelUp" parent="." instance=ExtResource( 5 )]
+position = Vector2( 784, 368 )
+
+[node name="PermissionHandler" parent="." instance=ExtResource( 6 )]
+position = Vector2( 144, 368 )
+
+[node name="ButtonArea2D" parent="PermissionHandler" index="0"]
+permissions = {
+"execute": 9,
+"read": 1,
+"write": 9
+}
+
+[node name="Readable" parent="PermissionHandler/Interactive" index="0" instance=ExtResource( 4 )]
+file_content = "Read all files in the other open rooms to get more instructions and power!"
+
+[editable path="PermissionHandler"]
