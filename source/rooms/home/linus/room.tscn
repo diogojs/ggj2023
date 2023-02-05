@@ -22,6 +22,7 @@ tile_data = PoolIntArray( -65522, 0, 65539, -65521, 0, 65539, -65520, 0, 65539, 
 [node name="Door" parent="." instance=ExtResource( 3 )]
 position = Vector2( 480, 32 )
 dir_name = ".."
+is_locked = false
 
 [node name="LevelUp" parent="." instance=ExtResource( 5 )]
 position = Vector2( 784, 368 )

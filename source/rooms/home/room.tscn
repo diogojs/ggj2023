@@ -6,7 +6,7 @@
 [ext_resource path="res://interactive/PermissionHandler.tscn" type="PackedScene" id=4]
 [ext_resource path="res://interactive/Readable.tscn" type="PackedScene" id=5]
 
-[node name="Room" type="Node2D"]
+[node name="Room2" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Walls" type="Node2D" parent="."]
@@ -60,7 +60,7 @@ permissions = {
 }
 
 [node name="Readable" parent="PermissionHandler/Interactive" index="0" instance=ExtResource( 5 )]
-file_content = "To gain access to the /sys folder, the user needs to enter the command: chmod +w /sys \\nThis only works at the right location."
+file_content = "To gain access to the /sys folder, the user needs to enter the command: chmod +w /sys This only works at the right location."
 
 [editable path="Door"]
 [editable path="Door2"]
