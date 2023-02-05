@@ -26,6 +26,9 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	switch_door_status()
 
+func is_near_top():
+	return global_position.y < OS.get_window_size().y / 2
+
 func get_rect():
 	var coll2D = get_node("Area2D/CollisionShape2D")
 	var diameter = coll2D.shape.radius * 2
