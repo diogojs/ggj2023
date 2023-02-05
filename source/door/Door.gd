@@ -13,10 +13,10 @@ var is_open = false
 
 func switch_door_status():
 	var sprite = get_node("Sprite")
-	if is_open:
-		sprite.region_rect.position.x = 0
-	else:
-		sprite.region_rect.position.x = 6 * 68
+	#if is_open:
+	#	sprite.region_rect.position.x = 0
+	#else:
+	#	sprite.region_rect.position.x = 6 * 68
 	is_open = not is_open
 
 func _on_Area2D_body_entered(body):
