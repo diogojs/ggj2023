@@ -47,7 +47,7 @@ func cat(args: Array) -> String:
 	return "\n"
 
 func _on_access_denied(message: String):
-	add_text(message)
+	add_text("\n" + message + "\n")
 
 func copy(args):
 	emit_signal("on_copy_File")

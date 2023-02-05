@@ -4,6 +4,7 @@ export var current_dir = "/"
 var scene_changing = false
 var selected_file = null
 var scenes_dict = {}
+onready var terminal := $Terminal
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,9 +60,24 @@ func _on_Door_open(new_dir_name):
 	new_room.connect("on_Player_enter_File_area", self, "_on_Player_enter_File_area")
 	new_room.connect("on_Player_exit_File_area", self, "_on_Player_exit_File_area")
 	
+	connect_interactives_to_terminal(new_room)
+	
 	change_player_position(new_room, old_dir)
 	$Timer.start()
 
+func connect_interactives_to_terminal(room_scene: Node2D):
+	var interactives = Array()
+	find_child_by_name(self, "Readable", interactives)
+
+	for interactive in interactives:
+		interactive.connect("access_denied", terminal, "_on_access_denied")
+
+func find_child_by_name(from, name: String, array_of_children):
+	for child in from.get_children():
+		if child.name == "Readable":
+			array_of_children.append(child)
+		else:
+			find_child_by_name(child, name, array_of_children)
 
 func _on_Timer_timeout():
 	scene_changing = false # Replace with function body.
