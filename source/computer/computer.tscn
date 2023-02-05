@@ -62,4 +62,5 @@ margin_bottom = 600.0
 [connection signal="access_denied" from="CurrentRoom/PermissionHandler/Interactive/Readable" to="Terminal" method="_on_access_denied"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
+[editable path="Player"]
 [editable path="CurrentRoom/PermissionHandler"]

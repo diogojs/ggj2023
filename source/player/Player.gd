@@ -67,3 +67,6 @@ func get_rect() -> Rect2:
 	var coll2D = get_node("CollisionShape2D")
 	var size = coll2D.shape.extents
 	return Rect2(coll2D.global_position - size / 2, size)
+
+func levelup():
+	permissions["read"] = permissions["read"]+1
