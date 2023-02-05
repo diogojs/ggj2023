@@ -36,6 +36,6 @@ permissions = {
 }
 
 [node name="Readable" parent="PermissionHandler/Interactive" index="0" instance=ExtResource( 4 )]
-file_content = "Read all files in the other open rooms to get more instructions and power!"
+file_content = "Get close to a file to read. They may contain useful informations."
 
 [editable path="PermissionHandler"]

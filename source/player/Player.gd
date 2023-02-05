@@ -74,5 +74,5 @@ func levelup():
 	if permissions["read"] == 1:
 		var terminal: Control = get_tree().get_root().get_node("Computer/Terminal")
 		terminal.visible = true
-		terminal.add_text("Now you have access to Read files.")
+		terminal.add_text("Terminal display is operational again.\nUser detected.\nKeyboard detected.")
 		

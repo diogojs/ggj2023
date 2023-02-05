@@ -59,7 +59,7 @@ permissions = {
 }
 
 [node name="Readable" parent="PermissionHandler/Interactive" index="0" instance=ExtResource( 5 )]
-file_content = "You can use the terminal on /home/stallman to run the command `chmod +x /sys`. Opening access to the /sys room."
+file_content = "To gain access to the /sys folder, the user needs to enter the command: chmod +w /sys \\nThis only works at the right location."
 
 [editable path="Door"]
 [editable path="Door2"]

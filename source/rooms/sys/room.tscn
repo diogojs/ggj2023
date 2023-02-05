@@ -62,6 +62,7 @@ permissions = {
 }
 
 [node name="Readable" parent="PermissionHandler/Interactive" index="0" instance=ExtResource( 1 )]
+file_content = "Some files must be transfered to other directories to gain access to superior folders.\\nYou can copy files using the command: copy"
 
 [node name="PermissionHandler2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 752, 400 )
@@ -74,6 +75,7 @@ permissions = {
 }
 
 [node name="Readable" parent="PermissionHandler2/Interactive" index="0" instance=ExtResource( 1 )]
+file_content = "After copying a file, it will stay on the memory. To paste files in the desired location you can use the command: paste"
 
 [editable path="Door"]
 [editable path="Door2"]
