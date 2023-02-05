@@ -3,7 +3,7 @@ extends Node2D
 export var current_dir = "/"
 var scene_changing = false
 var selected_file = null
-var scenes_dict = {}
+var rooms_dict = {}
 onready var terminal := $Terminal
 
 # Called when the node enters the scene tree for the first time.
@@ -44,16 +44,16 @@ func _on_Door_open(new_dir_name):
 	old_room.disconnect("on_Player_enter_File_area", self, "_on_Player_enter_File_area")
 	old_room.disconnect("on_Player_exit_File_area", self, "_on_Player_exit_File_area")
 	remove_child(old_room)
-	scenes_dict[current_dir] = old_room
+	rooms_dict[current_dir] = old_room
 	
 	var old_dir = change_directory(new_dir_name)
 	
-	if not scenes_dict.has(current_dir):
+	if not rooms_dict.has(current_dir):
 		var scene_filename = "res://rooms" + current_dir + "/room.tscn" 
 		var new_room_scene = load(scene_filename)
-		scenes_dict[current_dir] = new_room_scene.instance()
+		rooms_dict[current_dir] = new_room_scene.instance()
 	
-	var new_room = scenes_dict[current_dir]
+	var new_room = rooms_dict[current_dir]
 	new_room.name = "CurrentRoom"
 	add_child(new_room, true)
 	new_room.connect("on_Door_open", self, "_on_Door_open")
@@ -83,11 +83,9 @@ func _on_Timer_timeout():
 	scene_changing = false # Replace with function body.
 
 func _on_Player_enter_File_area(file: Node2D):
-	print("Player entered")
 	selected_file = file
 	
-func _on_Player_exit_File_area(file: Node2D):
-	print("Player exit")
+func _on_Player_exit_File_area(_file: Node2D):
 	selected_file = null
 	
 func _on_copy_File():
@@ -109,3 +107,8 @@ func _on_paste_File():
 	var player = get_node("Player/KinematicBody2D")
 	var room = get_node("CurrentRoom")
 	room.add_file(player.get_rect(), file)
+	
+	# workaround
+	if current_dir == "/sys/firmware":
+		var door = rooms_dict["/"].get_door("root")
+		door.unlock()

@@ -10,7 +10,7 @@ var is_open = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready():
 	if not is_locked:
-		unlock_door()
+		unlock()
 
 func switch_door_status():
 	var sprite: Sprite = get_node("Locked" if is_locked else "Unlocked")
@@ -23,7 +23,7 @@ func switch_door_status():
 		shape.set_deferred("disabled", true)
 	is_open = not is_open
 
-func unlock_door():
+func unlock():
 	get_node("Locked").hide()
 	get_node("Unlocked").show()
 	is_locked = false
