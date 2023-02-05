@@ -116,6 +116,7 @@ func _on_paste_File():
 	if current_dir == "/sys/firmware":
 		var door = rooms_dict["/"].get_door("root")
 		door.unlock()
+		terminal.add_text("\n[color=green]Unlocked /root[/color]")
 
 func unlock_sys_dir() -> bool:
 	if current_dir == "/home/stallman":
@@ -123,5 +124,6 @@ func unlock_sys_dir() -> bool:
 		if room.get_node("Write").turn_on:
 			var door = rooms_dict["/"].get_door("sys")
 			door.unlock()
+			terminal.add_text("[color=green]\nUnlocked /sys[/color]")
 			return true
 	return false
