@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/placeholder/scifitiles-sheet.png" type="Texture" id=1]
+
+[node name="locked_door" type="Sprite"]
+z_index = 1
+texture = ExtResource( 1 )
+offset = Vector2( 16, 8 )
+region_enabled = true
+region_rect = Rect2( 64, 132, 32, 16 )

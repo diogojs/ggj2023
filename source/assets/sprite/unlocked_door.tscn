@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/placeholder/scifitiles-sheet.png" type="Texture" id=1]
+
+[node name="Scifitiles-sheet" type="Sprite"]
+texture = ExtResource( 1 )
+offset = Vector2( 16, 8 )
+region_enabled = true
+region_rect = Rect2( 96, 4, 32, 16 )
