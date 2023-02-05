@@ -105,7 +105,7 @@ func _on_paste_File():
 	var file = transfer_area.pop_item()
 	if file == null:
 		return
-		
+	
 	var player = get_node("Player/KinematicBody2D")
 	var room = get_node("CurrentRoom")
 	room.add_file(player.get_rect(), file)

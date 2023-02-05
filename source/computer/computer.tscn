@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://rooms/room.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -53,14 +53,13 @@ margin_bottom = 608.0
 wait_time = 0.1
 one_shot = true
 
-[connection signal="access_denied" from="CurrentRoom/PermissionHandler/Interactive/Readable" to="Terminal" method="_on_access_denied"]
-
 [node name="TransferArea" parent="." instance=ExtResource( 8 )]
 margin_left = 896.0
 margin_top = 536.0
 margin_right = 1024.0
 margin_bottom = 600.0
 
+[connection signal="access_denied" from="CurrentRoom/PermissionHandler/Interactive/Readable" to="Terminal" method="_on_access_denied"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [editable path="CurrentRoom/PermissionHandler"]
