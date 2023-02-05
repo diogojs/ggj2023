@@ -33,7 +33,7 @@ func add_text(text: String):
 
 func _validate(command: String) -> bool:
 	var exec = command.substr(0, command.find(" "))
-	return exec in ["cat", "copy", "paste", "chmod"]
+	return exec in ["cat", "copy", "paste", "chmod", "sudo"]
 
 func run_command(command: String) -> String:
 	var exec_end = command.find(" ")
@@ -63,4 +63,10 @@ func chmod(args: Array):
 			var computer = get_parent()
 			if computer.unlock_sys_dir():
 				return " Permissions changed succesfully"
+	return " Nothing happened"
+
+func sudo(args: Array):
+	if args.size() == 2:
+		if args[0] == "apt" and args[1] == "upgrade":
+			add_text("System upgraded successfully! OS Restored!\nCongratulations on completing the game.\nCredits:\nDiogo Junior de Souza\nRafael Gaúna Trindade\nVinicius Mateus Dreifke")
 	return " Nothing happened"
