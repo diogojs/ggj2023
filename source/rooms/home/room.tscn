@@ -35,7 +35,6 @@ text = "../"
 [node name="Door3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 768, 544 )
 dir_name = "stallman"
-is_locked = false
 
 [node name="Label" parent="Door3" index="5"]
 text = "./stallman"

@@ -27,6 +27,8 @@ func change_directory(new_dir_name):
 		var idx = current_dir.rfind("/")
 		var old_name = current_dir.substr(idx + 1)
 		current_dir = current_dir.substr(0, idx)
+		if current_dir == "":
+			current_dir = "/"
 		return old_name
 		
 		
