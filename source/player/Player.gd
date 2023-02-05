@@ -69,9 +69,9 @@ func get_rect() -> Rect2:
 	return Rect2(coll2D.global_position - size / 2, size)
 
 func levelup():
-	permissions["read"] = permissions["read"]+1
+	permissions["read"] = permissions["read"]+10
 	
-	if permissions["read"] == 1:
+	if permissions["read"] > 1:
 		var terminal: Control = get_tree().get_root().get_node("Computer/Terminal")
 		terminal.visible = true
 		terminal.add_text("Terminal display is operational again.\nUser detected.\nKeyboard detected.")
