@@ -20,11 +20,14 @@ func _on_text_entered(new_text: String):
 	if command.empty():
 		return
 
-	history.bbcode_text += prompt + command
+	add_text(prompt + command)
 	if _validate(command):
-		history.bbcode_text += run_command(command)
+		add_text(run_command(command))
 	else:
-		history.bbcode_text += "\n[color=red]" + command + "[/color] : invalid command"
+		add_text("\n[color=red]" + command + "[/color] : invalid command")
+
+func add_text(text: String):
+	history.bbcode_text += text
 
 func _validate(command: String) -> bool:
 	var exec = command.substr(0, command.find(" "))
@@ -44,3 +47,6 @@ func cat(args: Array) -> String:
 	if args.empty():
 		return "\n[color=red]Usage:[/color] cat <file>"
 	return "\n"
+
+func _on_access_denied(message: String):
+	add_text(message)

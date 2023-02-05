@@ -69,5 +69,6 @@ wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="access_denied" from="CurrentRoom/PermissionHandler/Interactive/Readable" to="Terminal" method="_on_access_denied"]
 
 [editable path="CurrentRoom/PermissionHandler"]
