@@ -19,7 +19,9 @@ func _ready():
 	
 func change_directory(new_dir_name):	
 	if new_dir_name != "..":
-		current_dir += "/" + new_dir_name
+		if current_dir != "/":
+			current_dir += "/"
+		current_dir += new_dir_name
 		return ".."
 	else:
 		var idx = current_dir.rfind("/")
@@ -112,3 +114,12 @@ func _on_paste_File():
 	if current_dir == "/sys/firmware":
 		var door = rooms_dict["/"].get_door("root")
 		door.unlock()
+
+func unlock_sys_dir() -> bool:
+	if current_dir == "/home/stallman":
+		var room = get_node("CurrentRoom")
+		if room.get_node("Write").turn_on:
+			var door = rooms_dict["/"].get_door("sys")
+			door.unlock()
+			return true
+	return false

@@ -5,23 +5,23 @@ signal on_Door_open(dir_name)
 # Declare member variables here. Examples:
 export var dir_name = ""
 export var is_locked = true
-var is_open = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready():
 	if not is_locked:
 		unlock()
-
-func switch_door_status():
+	
+func open_door():
 	var sprite: Sprite = get_node("Locked" if is_locked else "Unlocked")
 	var shape = get_node("CollisionShape2D")
-	if is_open:
-		sprite.show()
-		shape.set_deferred("disabled", false)
-	else:
-		sprite.hide()
-		shape.set_deferred("disabled", true)
-	is_open = not is_open
+	sprite.hide()
+	shape.set_deferred("disabled", true)
+	
+func close_door():
+	var sprite: Sprite = get_node("Locked" if is_locked else "Unlocked")
+	var shape = get_node("CollisionShape2D")
+	sprite.show()
+	shape.set_deferred("disabled", false)
 
 func unlock():
 	get_node("Locked").hide()
@@ -30,11 +30,11 @@ func unlock():
 
 func _on_Area2D_body_entered(_body):
 	if not is_locked:
-		switch_door_status()
+		open_door()
 
 func _on_Area2D_body_exited(_body):
 	if not is_locked:
-		switch_door_status()
+		close_door()
 
 func is_near_top():
 	return global_position.y < OS.get_window_size().y / 2

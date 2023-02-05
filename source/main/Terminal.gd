@@ -33,7 +33,7 @@ func add_text(text: String):
 
 func _validate(command: String) -> bool:
 	var exec = command.substr(0, command.find(" "))
-	return exec in ["cat", "copy", "paste"]
+	return exec in ["cat", "copy", "paste", "chmod"]
 
 func run_command(command: String) -> String:
 	var exec_end = command.find(" ")
@@ -57,3 +57,10 @@ func paste(args):
 	emit_signal("on_paste_File")
 	return ""
 
+func chmod(args: Array):
+	if args.size() == 2:
+		if args[0] == "+w" and args[1] == "/sys":
+			var computer = get_parent()
+			if computer.unlock_sys_dir():
+				return " Permissions changed succesfully"
+	return " Nothing happened"
