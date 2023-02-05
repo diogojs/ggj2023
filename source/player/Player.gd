@@ -70,3 +70,9 @@ func get_rect() -> Rect2:
 
 func levelup():
 	permissions["read"] = permissions["read"]+1
+	
+	if permissions["read"] == 1:
+		var terminal: Control = get_tree().get_root().get_node("Computer/Terminal")
+		terminal.visible = true
+		terminal.add_text("Now you have access to Read files.")
+		
