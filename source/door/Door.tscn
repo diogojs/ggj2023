@@ -43,6 +43,12 @@ collision_layer = 2
 position = Vector2( 16, 23.5 )
 shape = SubResource( 3 )
 
+[node name="Label" type="Label" parent="."]
+margin_left = 34.0
+margin_right = 92.0
+margin_bottom = 16.0
+text = "/dirname"
+
 [connection signal="body_entered" from="Detection" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Exit" to="." method="_on_Exit_body_entered"]

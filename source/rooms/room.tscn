@@ -67,6 +67,9 @@ position = Vector2( 288, 448 )
 dir_name = "home"
 is_locked = false
 
+[node name="Label" parent="Door" index="5"]
+text = "/home"
+
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -2
 tile_set = ExtResource( 2 )
@@ -88,6 +91,16 @@ tile_data = PoolIntArray( 131085, 1, 2, 131086, 1, 2, 131087, 1, 2, 131088, 1, 2
 position = Vector2( 704, 448 )
 dir_name = "root"
 
+[node name="Label" parent="Door2" index="5"]
+text = "/root"
+
 [node name="Door3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 480, 448 )
 dir_name = "sys"
+
+[node name="Label" parent="Door3" index="5"]
+text = "/sys"
+
+[editable path="Door"]
+[editable path="Door2"]
+[editable path="Door3"]

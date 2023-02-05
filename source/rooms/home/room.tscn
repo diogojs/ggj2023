@@ -21,15 +21,24 @@ position = Vector2( 160, 544 )
 dir_name = "linus"
 is_locked = false
 
+[node name="Label" parent="Door" index="5"]
+text = "./linus"
+
 [node name="Door2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 384, 32 )
 dir_name = ".."
 is_locked = false
 
+[node name="Label" parent="Door2" index="5"]
+text = "../"
+
 [node name="Door3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 768, 544 )
 dir_name = "stallman"
 is_locked = false
+
+[node name="Label" parent="Door3" index="5"]
+text = "./stallman"
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -7
@@ -52,4 +61,7 @@ permissions = {
 [node name="Readable" parent="PermissionHandler/Interactive" index="0" instance=ExtResource( 5 )]
 file_content = "You can use the terminal on /home/stallman to run the command `chmod +x /sys`. Opening access to the /sys room."
 
+[editable path="Door"]
+[editable path="Door2"]
+[editable path="Door3"]
 [editable path="PermissionHandler"]
