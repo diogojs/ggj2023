@@ -68,5 +68,5 @@ func chmod(args: Array):
 func sudo(args: Array):
 	if args.size() == 2:
 		if args[0] == "apt" and args[1] == "upgrade":
-			add_text("System upgraded successfully! OS Restored!\nCongratulations on completing the game.\nCredits:\nDiogo Junior de Souza\nRafael Gaúna Trindade\nVinicius Mateus Dreifke")
+			return "\n[b][color=green]System upgraded successfully! OS Restored!\nCongratulations on completing the game.\nCredits:\nDiogo Junior de Souza\nRafael Gaúna Trindade\nVinicius Mateus Dreifke[/color][/b]\n"
 	return " Nothing happened"
